@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Розрахунок сонячної радіації</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <div id="map"></div>
+
+  <div style="display: none;">
+      <span id="E">350</span>
+      <span id="psi">0.2</span>
+      <span id="a">0.2</span>
+  </div>
+
+  <div class="input-section">
+      <h2>ПАРАМЕТРИ</h2>
+      <div class="input-group">
+        <label>Iнтенсивнiсть (E), Вт/м²:</label>
+        <input type="number" id="Intensyvity" value="750">
+      </div>
+      <div class="input-group">
+        <label>Альбедо (a):</label>
+        <input type="number" id="Albedo" value="0.2">
+      </div>
+      <div class="input-group">
+          <label>Широта (φ), градуси:</label>
+          <input type="number" id="phi" value="48">
+      </div>
+      <div class="input-group">
+          <label>Дата (дд.мм.рррр):</label>
+          <input type="text" id="date" value="15.05.2025">
+      </div>
+      <div class="input-group">
+          <label>Кут нахилу (B), градуси:</label>
+          <input type="number" id="B" value="48">
+      </div>
+      <button onclick="calculate()">Розрахувати</button>
+  </div>
+
+  <div class="results-section">
+      <h2>РЕЗУЛЬТАТИ</h2>
+      <div class="input-group">
+          <label>Кут падіння (θ):</label>
+          <span id="theta">-</span>°
+      </div>
+      <div class="input-group">
+          <label>Пряма радіація (Eпр):</label>
+          <span id="Epr">-</span> Вт/м²
+      </div>
+      <div class="input-group">
+          <label>Розсіяна радіація (Eдиф):</label>
+          <span id="Edif">-</span> Вт/м²
+      </div>
+      <div class="input-group">
+          <label>Відбита радіація (Eвід):</label>
+          <span id="Evid">-</span> Вт/м²
+      </div>
+      <div class="input-group">
+          <label>Максимальна інтенсивність (Eсп):</label>
+          <span id="Esp">-</span> Вт/м²
+      </div>
+      <div class="input-group">
+        <label>Аппроксимаційна функція:</label>
+        <span id="regressionEquation">y = ax² + bx + c</span>
+      </div>
+  </div>
+
+  <div class="charts">
+      <div class="chart-container">
+          <h2>Графік Eсп за час доби</h2>
+          <canvas id="timeChart" style="box-sizing: border-box; display: block; height: 480px; width: 960px;" width="960" height="480"></canvas>
+      </div>
+      <div class="chart-container">
+          <h2>Графік Eсп за кутом нахилу</h2>
+          <canvas id="angleChart" style="box-sizing: border-box; display: block; height: 480px; width: 960px;" width="960" height="480"></canvas>
+      </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
